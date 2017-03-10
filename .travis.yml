@@ -9,6 +9,7 @@ install:
 script:
 - cd ./api
 - go test
+- cd ..
 after_success:
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 - docker build ./api -t mcmenemy/aws-auto-deploy-api:latest
