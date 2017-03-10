@@ -1,5 +1,5 @@
 # GoDoRP
-[![Build Status](https://travis-ci.org/McMenemy/awsAutoDeploy.svg?branch=master)](https://travis-ci.org/McMenemy/sequentify)
+[![Build Status](https://travis-ci.org/McMenemy/awsAutoDeploy.svg?branch=master)](https://travis-ci.org/McMenemy/awsAutoDeploy)
 
 GoDoRP (Golang, Docker, React, Postgres) project starter. Still under heavy development.
 
