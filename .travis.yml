@@ -10,18 +10,10 @@ script:
 - cd ./api
 - go test
 after_success:
-- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 - docker build ./api -t mcmenemy/aws-auto-deploy-api:latest
 - docker push mcmenemy/aws-auto-deploy-api:latest
 - docker build ./frontend -t mcmenemy/aws-auto-deploy-frontend:latest
 - docker push mcmenemy/aws-auto-deploy-frontend:latest
 - docker build ./db -t mcmenemy/aws-auto-deploy-db:latest
 - docker push mcmenemy/aws-auto-deploy-db:latest
-env:
-  global:
-    DOCKER_USER:
-      secure: j3QwkWeJx9oLFxN7sNjo1cHivB7jGQUajpD0RE4CweFLSKTHQzIHJ66O071f/EWr9rWFAkH08f1jlPcoqR/Lsd8jAe/wipe52OXsmcb9O6QzvyeKpbf06gr5Th1so4BxCAHajHCMe+r2J3JWIU50+jCxWYO0f92Fx3jn/ErJ2QoN/CJJHSC+VQ+76byhPV/7fJQqvHCr96aP46jKXIMYqjr7R7XCRDriBRmKIj6ekNpDC2o2jl2oREiqhaX7VF8Sfed4eRGBlvwWmqujWN2oSU5s5AjCYjHLyakiRYJZ3o5tMCMlPla4YhxiTiqZGbgNOuiYkYOiCIwiW/5eNwOOvbSDMvMKwbT6lRQ04r5VE0BNnQjKFnkD2vMBkPzOM2BscNlsmA3Ah7kDU73Dn/FW4lG4NzBHBOvMRg0n0DbfXA1Lx1AuQ2vtobyp5/f6LpW6Zle1HN0sd+hFQRmVhY/P+yg9O6JINPJYV5ogYJw8hBS10boB0SHUoMQZO33zXp6WbKCqE/nXrgoXTskOl1cJlusXKj4tLXmj+ATldHGkvOh1RQ45Wbb4LpywssQyg0FZtTHcYcX7iOh2VrviqRTNLl/q5OB2q5P3ulflkppsmFxAwORKPR3UDVPBg+z5LJglMtIzxwazak4j8VJu7eOpvBIiXLHL8mVCgLBydbWaxbA=
-    DOCKER_EMAIL:
-      secure: JSJjYA143gipvf8pz+NCnOtYHo7uRlPnUu7dB8nYd0yKVE+EEMKU2U6IeoV1JF2DfSkjrfw/tmvR6ThI7EQkCIDGA6WWQhAJYesO/7jaFqlGw3rkJdxf+panGQ9nDhn+M3OXrOtTbGhY/bgszF6fOGfTrvUZC2Hp7R51U8EypNAmjeTwf+mSnHXzTg1QlvWKOkNWP2eSRb3Xlrxz+ur/gGLhNQYGni+yAMHjYTV89Ovj4TBkof/+fKZ/hWyjA+97o1yN6g99qf1VUu26kmTW+TV8QyRx0BjbfB0yuOK1ztfifo6En3nF5OLmCG5DSRDfJ9FQo5v/vDaaLzsALzwuauYZl/qpGEZtW+GCm8Vc35engwCqn6X0LqHlyp0MuQ042DaV3KXanJKQAVJu0NjwXkJk8IeG4GEjLLDpuRcxyJA/o2cd9MeyHYVvUiZyNOt6QcsatXYpe2Kvt90sEEv9zTIm1x9CzcN+Y1VfiJN7/MI2JsVDhh/agS9xxfFyVdY/iP3DjPNYQ8v3mu0BtOZcSeZZNc3Ip4ifIkhluvIHrFZHPiD4b210pYiX6ohVgcrVfv9QZU/InHMRrqaKCaZgyGjL1C8z2/aFU4NJRuGvr1rNH6M2WGebOwUMW9JLMjqUJlUln4CQW4a0wdg1ku0b4cPmGUfNPTClntZU+ARiB1o=
-    DOCKER_PASS:
-      secure: jBWv2/KTPgD1Yc5Y3u+1Eo5OIz0CoKdNeh5SJRjm7IzHN/ygB999+z12rY0xp3Y5n0fDFlto0kRWMelkqZrvqsj9yJejh0lw5Xgc7Cgs7Zj3HHDaNgvZZ7AoxFt+G1pkXZLdteUUFS/AxzAyTmAz8LnaFsYQ8Z05ObAN2f1OoeC8g9GoNUu7BLRkw12Mordocwh8ibP8EA2+n8YYXbsMlPfh/QpyUEjB6/tG5XMvR9tawucZDQZPDdYzbclUYL5TM+hQUd0J1YQUGxFl7bGTAS2dv/oN+Y9ypVigZrl+XG2wDWRZLn0blOUq9Db4pvQFrWBZiwnmo9H3aR5C+evqum1jv0B0qT7nTxz0416xD/9lKELqg+Yv30BJimdrpjfWXBYT+oQV4Wch6Jzlz0Rhyly2M1FldXzM44DchZTiRspnm8llHbVS0MsS8gNDSsBtNuLd9qD0I9FPUSN0OJiWKnixKi2iFlbeg4G8K/e2yNM5FYVmbkiPTXova1fIKdKRQKpRdYEmuuL4EiSilxDhPqEEDOmKxk0+DpK6irokjjB+b88LNp7zdaWNLv9i3oX5I0KvuGtvoVp18aeV45YPsMiS0QzpOd3CWt+0O6d/CpwrZCGrhgxOyPYSKDEGO8+WAvFfmKaKgIGa6RcfRGkU9sNIf+tE7cGGeaXzWQzyIeY=
