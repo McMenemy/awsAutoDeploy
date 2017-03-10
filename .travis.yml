@@ -15,12 +15,12 @@ script:
 
 after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  - docker build ./api -t mcmenemy/godorp_api:latest
-  - docker push mcmenemy/godorp_api:latest
-  - docker build ./frontend -t mcmenemy/godorp_frontend:latest
-  - docker push mcmenemy/godorp_frontend:latest
-  - docker build ./db -t mcmenemy/godorp_db:latest
-  - docker push mcmenemy/godorp_db:latest
+  - docker build ./api -t mcmenemy/aws-auto-deploy-api:latest
+  - docker push mcmenemy/aws-auto-deploy-api:latest
+  - docker build ./frontend -t mcmenemy/aws-auto-deploy-frontend:latest
+  - docker push mcmenemy/aws-auto-deploy-frontend:latest
+  - docker build ./db -t mcmenemy/aws-auto-deploy-db:latest
+  - docker push mcmenemy/aws-auto-deploy-db:latest
 
 env:
   global:
