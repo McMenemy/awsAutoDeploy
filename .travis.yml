@@ -1,32 +1,27 @@
 language: go
 go:
-  - master
-
+- master
 services:
-  - docker
-
+- docker
 install:
-  - go get ./api/vendor/database
-  - go get ./api
-
+- go get ./api/vendor/database
+- go get ./api
 script:
-  - cd ./api
-  - go test
-
+- cd ./api
+- go test
 after_success:
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  - docker build ./api -t mcmenemy/aws-auto-deploy-api:latest
-  - docker push mcmenemy/aws-auto-deploy-api:latest
-  - docker build ./frontend -t mcmenemy/aws-auto-deploy-frontend:latest
-  - docker push mcmenemy/aws-auto-deploy-frontend:latest
-  - docker build ./db -t mcmenemy/aws-auto-deploy-db:latest
-  - docker push mcmenemy/aws-auto-deploy-db:latest
-
+- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+- docker build ./api -t mcmenemy/aws-auto-deploy-api:latest
+- docker push mcmenemy/aws-auto-deploy-api:latest
+- docker build ./frontend -t mcmenemy/aws-auto-deploy-frontend:latest
+- docker push mcmenemy/aws-auto-deploy-frontend:latest
+- docker build ./db -t mcmenemy/aws-auto-deploy-db:latest
+- docker push mcmenemy/aws-auto-deploy-db:latest
 env:
   global:
     DOCKER_EMAIL:
-      secure: K//bLlIJQS35oezeHMw9zFYUUZXrjisUE349wb8F3glEcerQBJfXAz6VVwoXuYBJtAWpkuf4AyBJCDUGKbo2OV/Z+ee5/BhICCDnHevKhTslrpJLKUHBwGt9h6NpdQwEbAFpnAyZFuSlyAzfIy9gkXmgwHfbrTrV1PdsOuerzi2rv/LQWOZwR/iFbVxPn7cDbrTzK/F8dC6uBsRYI4ddtf9N8o/UNa/nPdziVL3zgFI/ITsXf1E5J5g8Gjz5LVZ6rvUd3HS9aDxQJ8YhP/yiRv+5Ro3lbZCyu9Y6R/hqDTxXjgbC9zIHA0bR2g8Pg9MzLrl31m+8zPzSCBsBT0dsUcz4E947WukgsoCVvApMtL6EngpresH8RVnRamGNkPukmpm4bfsZ0ryNQ9BG4vGF+BnCJJeQZADoD916uN9fmqRDGBgzxQvkHID0kXNgpr9UXY8Tesz1/2KMQFEoxtGt1qQFA2vw5EyfeHEshn49uwaIa36D81+Cwr2BKeap/0QdopMDZbw67YZfAeKh8/2M2REmoM8lAF4o1qGkvSF+DuSFMmh3KhQwkdy94uFD1ffi65VJtSdLTCByap6pA0QfoBaIf+x/jKsQbPDu4G2F0u3WmhofTfLymuWYe9jo6tltJAs70dFdUN2suuUuM/eIfs2UluHBj/1B0pdQ6BwaDrQ=
+    - secure: FzRToqt6BsD5SZMSVs354UUrTXaO/pJpxwCOLj1YczEraruSQTelw5zY6ejdt3aX3TTsDXXujLY9lj9QbKsHR71kfCmCQxwmKAGmGT9Vn0oVim0Qjjxq/wiO6yTxCp7X4aZ5kA3tSzaYaaeOfVwlnvgpt528ojZEnt59DGGOg2ut8cG3cpaGUXMcgmnthxxDqnYJlKznB/e6bbdCRmBZYm7ZwiDp/COI3HUgOcfSYDrxm5pffCS4lMF2PuSEbll3Jq/bUkGoYZGrFH9+Z8r3Fd81oBj7qEHbXk6nGbX2KSTQGQm6NUmudsFOusuf0+CD4kXjhz5/FCsNLBMQRkZAI0DqAhJ50kQcm7nH8ndDR8IBu6unYLXEKc5WeclnQmhQlQRQwKE4YSM69gamrXX6fUAYgUXlk9FfGjDJ4EGtF2o3tzO0MpeBT095kRE10vmd7D0qlyu1/HsIUsFpg6NopymOw9CdUu8VcCxiGph7KZAIyvOvHFFBJuVIiixSMl7kWR/996RrrIGiqIuNnVs8RmoLskqvd4fPzPNvsFaQlu/xIS9KflEXOwAO/HK6yKzc7AKpT+RnxF1WkSW5dxjHKV+NAgx9OCPpl9olKYEy8m7lzmm83+xP8GGrl0VFFYo4Ho2PRyZ9OUTWkOXljUJiy6twJSDwIXEl3qzjBtFoSb0=
     DOCKER_USER:
-      secure: d+CeyOcvJv4cI7CnTb/vyl2chdz23PF9h/lzVI+cpyVQ1Wooy1XkCs+lyZJ48t4C0g5nOFH+WzjjbAKG6HzKUI+X9yHFQGLDhbb9rQ8/h1q0mbXZ7eDWNRDaPzGNDW2QBg49HolrmL+Tp1Ey/ei//R95tH4oebBioTZWMfLH4Y2BohbpFqR9iI3dfwQ4sHz25PN0J+36dl9q7QSq2ms0byg7dsosn04UWav2uCHBNYThU7MBjcXLFQS9R0oxpWDb3VQYDwtCl1z36+JEJtJpr/apb9rayR63ngHdUbQj6cZKT1Pn5IfTAHB+0Fbj5LsI/bUKAxNydjYpY7t4DzcYLopeyTd9aELl3CnftULuTY3Nm8zqn/jMaU5cEnUw/RYLjp5eJKvpxzplQcnXcABg8N6WIhtgBv+Ar948dbeVjkj4A0VlpLcC8bN0Hg71y96ytxGa6o/vfSTzfyPu8yX/EmvJsW/cisnKlyhT0v/SEauHi7lJWEVGvl0A6KEP6fpeQqtAV1VEphjMlRnE6RP3uhv4mB99NuOMAdCBOGTfBztcQ40Cux7/77ZLglI9mAKXx+oP+0HCBwW80B26AvVcdSmJb7d2t62+xZyeK511C/0vTQPN5U960cT3mm1S4PnQn7wzOUy+9lHxQGvloKJR8KDdznmqw7KqboQcnu1NZdU=
+    - secure: bx0EZE1oRHsCHciguvhFJ7tcGAOArfEjKt2KeQdNms9V42RZqRmJuFl2xe8LG/A597F8xB6bMf9VBJbc9Vdjt2M8rfFsL9VPP4KV2Oe1wq0HKDCwkyWOMkvgHmNdyCNO4HzMdEkaVpYMjaSmS5lsY/trJ96lgNxZTVWrngsJIl/Oi1n9BMIZFFQdNUkz2gaW76wzNZxtBM2RJ92eY0m7zaC7DSxA5Vr6X7xQFuV+RPdIcDm8bWbdV5z3xEJzW1HaUEZQGvEPDamaZnUeMUdN9eEJx9ucXfKqLR+t5Ey01t+/NHYNXN3SBvWh2xpbqACeRhQZ7UvkWR2aDBOkpYvWu3rJd2V+LfobCBTp8lKhKRBWyAyR28C0rZ26ENxkICiFpLmV5iwExodccDlBV5cfUdtbwPSa3/UpZZhaYnK3ypoTtpntnYE39nMwh0dt5ArrpgdF8wYrXLnbZMYI/X+NDCVInfwGwzn7xbp9Qe2KG7jWXmCVwVQgykNYXNOVdQEtV2BffLJAFhP2fBwgd5S3F7wmRFRXFDCK+YgtDTwh/8ouBQNcquto/DbDGkdK2TZ/2nrY7bGhrs6I1/0S/IYF7ZCtf3BC+d7fbe8nRR6hg5FCBBHe0+GokcPbITBA//Nd5jjpZsePqmyH+FCGzP6EK+PxcXzyguOnFFnCyqtR3Q0=
     DOCKER_PASS:
-      secure: auF4f4vLFCz+azcEz6uUi8rsru14SwDdRQZQ4mVhzFAXRFRjd4e5ZbgBSWL/d99it/kOr83Dtw0IWZrr3ZgdzNSfyupep6uEyrn7VQBmPck5paicvR1VJe/7EwqDSr826GnmLWcqxZffmubsraHQMe2TqBL80iu65kYfN+TCyM3gzgvNGX/quvQ5NArj01lir6WuvYC4l/jcHX3Dc7kKo3gyJNroyA+ADRIrtdcNm7bQZigoEI6VFk9u0awu4wNFtI1W22hjUTkIInpIKQQrgBSOhn90a9Ii59ln3YpKEdO3SdFgtvFKH8qdc2elR/eUPSnLQSmtRw9VHpxoJzmCU1uzA2BoWASZ/nnaBZf/nSakB8EMZtso25KFg2LyNARu2a8Oi9k7UjanKhkvwJ3nyFFRkLPqDZzpKaJsuZWOpFz/PWcUqWXXeRmorOB14Q1ADN3ns/iMR5VAjiEVVhmjPDmLmLO2u2Lk0lKH3zWHm378rZ8TBH7Toh29L808YwYXLxwG2COK7ejyOqZyo0AFLmMIQW8Yw6D/e4noJTwU3S1dM2L+nRtq8RNhmiT2dR3O37l9znYyEifOXXaTovVGg3MtVg4gMsG341/xgmywIfk2IJTqPHJI5nzdSPl6CZKZJ+KVs3gj+GDg7Hg5NADeoDa5KjS+faWUU4qgZQVuBzg=
+      secure: fkFvy9zxmmkqvBwaIIzeUM/qY0jzRx8aRUWeaZ9wqBLFw5RTwMcPGHWrCkUb6Bl2Ytw7MNdK37mIkU2O3qJb3CLaXnx1ynuC+7K1Eh9MaxoShnmeKAghv8pnnE16C3RoOUrI2ID/Zj2vdDRafXs6KVQvKPx5pstmbdnVm9HfFqqTXBfisI0I+ohPFpzew8JyesRrgc+dtUp3DFUvUu2uXjhpp2AFp3HFGJ/hUCw490FQ8qSHMiTm8vOlaFCQfYItfVZfVjtagyJO78hUQuiDDU4V7wwzhrkuKENzPukIi/NkRAbvOq+kLUNpOuyoxaQt8yUnAIuVl4LERoG5x3sV9Ws+WjXBVi5rgZ7AmBZgmqA/zO1FwtHodH/2fTDfmll3X0bGVVi9QbVMKm6BRmJ+yLxImxhQMkRjFiuRJmUPxbTvnvi99f+3dyPJfsXhlsUgy6SWwbXexMl4dcadD5qR8rI+gc93ClNNDvknl4On24FnWC1XEv81BD4AW0ThhLiCgyvPtMhaa6YvnwoRBDo7oJqqWqjPuNGiH5j0vDoWkn+4u1JuxJUAM2CHzyU8nds2RxJTM73rGG12Qv9joiWID8wyCU5d7LTllKYa0x4yAoXUnZJ4Od1GDsK6Mm86VjCzlo5ZCeu/UG2xHtppwX5OOKQyYtTFLMrvMvChT9zaHg0=
